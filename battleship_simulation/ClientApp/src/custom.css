@@ -1,0 +1,67 @@
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.sides {
+    margin: 0;
+}
+
+.left {
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+.right {
+    float: left;
+    width: 50%;
+    height:auto;
+}
+.center
+{
+    padding: 0;
+    margin: 0;
+}
+
+.rectangle {
+    display: inline-block;
+    width: 8%;
+    height: 50px;
+    background: lightblue;
+    margin-left: 5px;
+}
+
+.rectangle2 {
+    display: inline-block;
+    width: 8%;
+    height: 50px;
+    background: grey;
+    margin-left: 5px;
+}
+
+.rectangle3 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: red;
+    margin: 5px;
+}
+
+.rectangle4 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: black;
+    margin: 5px;
+}
