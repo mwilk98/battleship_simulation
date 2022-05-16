@@ -42,10 +42,10 @@ namespace battleship_simulation.Controllers
         }
 
         [HttpGet]
-        public string[][] Get()
+        public IActionResult Get()
         {
             createBoard();
-            return gameBoard;
+            return new OkObjectResult(new WeatherForecast { Board = gameBoard, Board2 = gameBoard });
         }
     }
 }
