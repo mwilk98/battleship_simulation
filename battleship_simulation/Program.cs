@@ -9,101 +9,6 @@ using System.Threading.Tasks;
 
 namespace battleship_simulation
 {
-    public class Board
-    {
-        public string[][] gameBoard = new string[10][];
-
-        public void createBoard()
-        {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                gameBoard[i] = new string[10];
-            }
-
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                for (int j = 0; j < gameBoard[i].Length; j++)
-                {
-                    gameBoard[i][j] = "e";
-                }
-            }
-        }
-
-        public void printBoard()
-        {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                for (int j = 0; j < gameBoard[i].Length; j++)
-                {
-                    Console.Write("{0} ", gameBoard[i][j]);
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public bool tryPlaceShip(Ship ship, int start, int place, int direction)
-        {
-            bool test = true;
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                for (int j = 0; j < gameBoard[i].Length; j++)
-                {
-                    if (direction == 0)
-                    {
-                        if (i >= start && i < start + ship.lives && j == place)
-                        {
-                            if (gameBoard[i][j] != "e")
-                            {
-                                test = false;
-                            }
-                        }
-                    }
-                    if (direction == 1)
-                    {
-                        if (j >= start && j < start + ship.lives && i == place)
-                        {
-                            if (gameBoard[i][j] != "e")
-                            {
-                                test = false;
-                            }
-                        }
-                    }
-
-                }
-            }
-            return test;
-        }
-        public void placeShip(Ship ship, int start, int place, int direction)
-        {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                for (int j = 0; j < gameBoard[i].Length; j++)
-                {
-                    if (direction == 0)
-                    {
-                        if (i >= start && i < start + ship.lives && j == place)
-                        {
-                            if (gameBoard[i][j] == "e")
-                            {
-                                gameBoard[i][j] = ship.symbol;
-                            }
-                        }
-                    }
-                    if (direction == 1)
-                    {
-                        if (j >= start && j < start + ship.lives && i == place)
-                        {
-                            if (gameBoard[i][j] == "e")
-                            {
-                                gameBoard[i][j] = ship.symbol;
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
 
     public class Ship
     {
@@ -191,7 +96,7 @@ namespace battleship_simulation
             return listNumbers;
         }
 
-        public void placeShipsOnBoard(Board board, List<Ship> playerShips)
+        public string[][] placeShipsOnBoard(Board board, List<Ship> playerShips, string[][] gameBoard)
         {
             Random random = new Random();
             List<int> listNumbers = getRandomIntList();
@@ -202,13 +107,14 @@ namespace battleship_simulation
                 do
                 {
                     number = random.Next(2);
-                } while (!board.tryPlaceShip(ship, 1, listNumbers[index], number));
-                board.placeShip(ship, 1, listNumbers[index], number);
+                } while (!board.tryPlaceShip(ship, 1, listNumbers[index], number, gameBoard));
+                board.placeShip(ship, 1, listNumbers[index], number, gameBoard);
                 index++;
             }
+            return board.gameBoard;
         }
 
-        public void playerShot(Board board, List<Ship> playerShips)
+        public void playerShot(List<Ship> playerShips, string[][] gameBoard)
         {
             Random random = new Random();
             int col;
@@ -217,64 +123,39 @@ namespace battleship_simulation
             {
                 col = random.Next(10);
                 rows = random.Next(10);
-            } while (board.gameBoard[col][rows] == "m" || board.gameBoard[col][rows] == "t");
+            } while (gameBoard[col][rows] == "m" ||gameBoard[col][rows] == "t");
 
             foreach (var ship in playerShips)
             {
-                if (board.gameBoard[col][rows] == ship.symbol)
+                if (gameBoard[col][rows] == ship.symbol)
                 {
                     ship.hit();
-                    board.gameBoard[col][rows] = "t";
+                    gameBoard[col][rows] = "t";
                 }
             }
-            if (board.gameBoard[col][rows] == "t")
+            if (gameBoard[col][rows] == "t")
             {
-                board.gameBoard[col][rows] = "t";
+                gameBoard[col][rows] = "t";
             }
             else
             {
-                board.gameBoard[col][rows] = "m";
+                gameBoard[col][rows] = "m";
                 Console.WriteLine("Miss!");
             }
         }
 
-        public void gameSimulation(Board board, Board board2, List<Ship> playerOneShips, List<Ship> playerTwoShips)
+        public string[][] gameSimulation(string[][] gameBoard, List<Ship> playerOneShips)
         {
             int time = 0;
             do
             {
-                Console.Clear();
-                board.printBoard();
-                Console.WriteLine("time: " + time);
-                board2.printBoard();
 
-                playerShot(board, playerOneShips);
+                playerShot(playerOneShips, gameBoard);
 
                 System.Threading.Thread.Sleep(1000);
                 time++;
 
-                Console.Clear();
-                board.printBoard();
-                Console.WriteLine("time: " + time);
-                board2.printBoard();
-
-                playerShot(board2, playerTwoShips);
-
-
-                System.Threading.Thread.Sleep(1000);
-                time++;
-
-
-                if (!checkShips(playerOneShips))
-                {
-                    Console.WriteLine("Player 2 Won!");
-                }
-
-                if (!checkShips(playerTwoShips))
-                {
-                    Console.WriteLine("Player 1 Won!");
-                }
-            } while (checkShips(playerOneShips) && checkShips(playerTwoShips));
+            } while (true);
         }
     }
 
@@ -283,25 +164,25 @@ namespace battleship_simulation
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Game game = new();
-            List<Ship> playerOneShips = game.createPlayerShips();
+            //Game game = new();
+            //List<Ship> playerOneShips = game.createPlayerShips();
 
-            List<Ship> playerTwoShips = game.createPlayerShips();
+            //List<Ship> playerTwoShips = game.createPlayerShips();
 
-            Board board = new();
-            Board board2 = new();
-            board.createBoard();
-            board2.createBoard();
-            game.placeShipsOnBoard(board, playerOneShips);
-            game.placeShipsOnBoard(board2, playerTwoShips);
+            //Board board = new();
+            //Board board2 = new();
+            //board.createBoard();
+            //board2.createBoard();
+            //game.placeShipsOnBoard(board, playerOneShips);
+            //game.placeShipsOnBoard(board2, playerTwoShips);
 
 
-            Console.Clear();
-            board.printBoard();
-            Console.WriteLine("time: 0");
-            board2.printBoard();
+            //Console.Clear();
+            //board.printBoard();
+            //Console.WriteLine("time: 0");
+            //board2.printBoard();
 
-            game.gameSimulation(board, board2, playerOneShips, playerTwoShips);
+            //game.gameSimulation(board, board2, playerOneShips, playerTwoShips);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
