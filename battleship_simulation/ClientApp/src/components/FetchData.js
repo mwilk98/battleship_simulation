@@ -9,6 +9,12 @@ export class FetchData extends Component {
   }
 
     componentDidMount() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+        };
+        fetch('weatherforecast', requestOptions);
         this.interval = setInterval(() => {
             this.populateWeatherData();
             console.log(this.state.forecasts);

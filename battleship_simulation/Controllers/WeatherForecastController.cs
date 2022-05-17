@@ -11,28 +11,8 @@ namespace battleship_simulation.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
-        public string[][] gameBoard = new string[10][];
-
-        public void createBoard()
-        {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                gameBoard[i] = new string[10];
-            }
-
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                for (int j = 0; j < gameBoard[i].Length; j++)
-                {
-                    gameBoard[i][j] = "f";
-                }
-            }
-        }
+        static readonly battleship_simulation.IGameRepository repository = new battleship_simulation.GameRepository();
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -44,8 +24,13 @@ namespace battleship_simulation.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            createBoard();
-            return new OkObjectResult(new WeatherForecast { Board = gameBoard, Board2 = gameBoard });
+            return new OkObjectResult(new WeatherForecast { Board = repository.GetAll(), Board2 = repository.GetAll() });
+        }
+
+        [HttpPost]
+        public void Add()
+        {
+            repository.Add();
         }
     }
 }
