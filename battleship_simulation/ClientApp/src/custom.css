@@ -40,6 +40,8 @@ code {
     height: 50px;
     background: lightblue;
     margin-left: 5px;
+    font-size: 10px;
+    text-align: center;
 }
 
 .rectangle2 {
@@ -48,20 +50,27 @@ code {
     height: 50px;
     background: grey;
     margin-left: 5px;
+    font-size: 10px;
+    text-align: center;
 }
 
 .rectangle3 {
     display: inline-block;
-    width: 50px;
+    width: 8%;
     height: 50px;
     background: red;
-    margin: 5px;
+    margin-left: 5px;
+    font-size: 10px;
+    text-align: center;
 }
 
 .rectangle4 {
     display: inline-block;
-    width: 50px;
+    width: 8%;
     height: 50px;
     background: black;
-    margin: 5px;
+    margin-left: 5px;
+    font-size: 10px;
+    text-align: center;
+    
 }

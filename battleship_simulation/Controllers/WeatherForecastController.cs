@@ -24,7 +24,7 @@ namespace battleship_simulation.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new OkObjectResult(new WeatherForecast { Board = repository.GetAll(), Board2 = repository.GetAll() });
+            return new OkObjectResult(new WeatherForecast { Board = repository.GetFirst(), Board2 = repository.GetSecond() });
         }
 
         [HttpPost]

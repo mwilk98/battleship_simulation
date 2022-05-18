@@ -35,16 +35,16 @@ export class FetchData extends Component {
                           <div>
                               {items.map((subItems, sIndex) => {
                                   if (subItems === 'e') {
-                                      return <div className="rectangle">  </div>;
+                                      return <div className="rectangle"> "" </div>;
                                   }
                                   if (subItems === 'c' || subItems === 'b' || subItems === 'd' || subItems === 's' || subItems === 'p') {
-                                      return <div className="rectangle2">  </div>;
+                                      return <div className="rectangle2"> {subItems} </div>;
                                   }
                                   if (subItems === 'm') {
-                                      return <div className="rectangle3">  </div>;
+                                      return <div className="rectangle3"> "" </div>;
                                   }
                                   if (subItems === 't') {
-                                      return <div className="rectangle4">  </div>;
+                                      return <div className="rectangle4"> "" </div>;
                                   }
                               })}
                           </div>
@@ -57,16 +57,16 @@ export class FetchData extends Component {
                           <div>
                               {items.map((subItems, sIndex) => {
                                   if (subItems === 'e') {
-                                      return <div className="rectangle">  </div>;
+                                      return <div className="rectangle"> "" </div>;
                                   }
                                   if (subItems === 'c' || subItems === 'b' || subItems === 'd' || subItems === 's' || subItems === 'p') {
-                                      return <div className="rectangle2">  </div>;
+                                      return <div className="rectangle2"> {subItems} </div>;
                                   }
                                   if (subItems === 'm') {
-                                      return <div className="rectangle3">  </div>;
+                                      return <div className="rectangle3"> "" </div>;
                                   }
                                   if (subItems === 't') {
-                                      return <div className="rectangle4">  </div>;
+                                      return <div className="rectangle4"> "" </div>;
                                   }
                               })}
                           </div>

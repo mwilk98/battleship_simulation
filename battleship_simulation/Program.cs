@@ -96,7 +96,7 @@ namespace battleship_simulation
             return listNumbers;
         }
 
-        public string[][] placeShipsOnBoard(Board board, List<Ship> playerShips, string[][] gameBoard)
+        public void placeShipsOnBoard(Board board, List<Ship> playerShips, string[][] gameBoard)
         {
             Random random = new Random();
             List<int> listNumbers = getRandomIntList();
@@ -111,7 +111,6 @@ namespace battleship_simulation
                 board.placeShip(ship, 1, listNumbers[index], number, gameBoard);
                 index++;
             }
-            return board.gameBoard;
         }
 
         public void playerShot(List<Ship> playerShips, string[][] gameBoard)
@@ -144,7 +143,7 @@ namespace battleship_simulation
             }
         }
 
-        public string[][] gameSimulation(string[][] gameBoard, List<Ship> playerOneShips)
+        public void gameSimulation(string[][] gameBoard, List<Ship> playerOneShips, string[][] gameBoard2, List<Ship> playerTwoShips)
         {
             int time = 0;
             do
@@ -155,7 +154,12 @@ namespace battleship_simulation
                 System.Threading.Thread.Sleep(1000);
                 time++;
 
-            } while (true);
+                playerShot(playerTwoShips, gameBoard2);
+
+                System.Threading.Thread.Sleep(1000);
+                time++;
+
+            } while (checkShips(playerOneShips) && checkShips(playerTwoShips));
         }
     }
 

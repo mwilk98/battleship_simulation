@@ -98,7 +98,9 @@ namespace battleship_simulation
 
     public interface IGameRepository
     {
-        string[][] GetAll();
+        string[][] GetFirst();
+
+        string[][] GetSecond();
 
         void Add();
     }
@@ -106,15 +108,21 @@ namespace battleship_simulation
     public class GameRepository: IGameRepository
     {
         public string[][] gameBoard = new string[10][];
+        public string[][] gameBoard2 = new string[10][];
 
         public GameRepository()
         {
 
         }
 
-        public string[][] GetAll()
+        public string[][] GetFirst()
         {
             return gameBoard;
+        }
+
+        public string[][] GetSecond()
+        {
+            return gameBoard2;
         }
 
         public void Add()
@@ -126,8 +134,10 @@ namespace battleship_simulation
 
             Board board = new();
             board.createBoard(gameBoard);
+            board.createBoard(gameBoard2);
             game.placeShipsOnBoard(board, playerOneShips,gameBoard);
-            game.gameSimulation(gameBoard,playerOneShips);
+            game.placeShipsOnBoard(board, playerTwoShips, gameBoard2);
+            game.gameSimulation(gameBoard,playerOneShips, gameBoard2, playerTwoShips);
 
         }
     }
