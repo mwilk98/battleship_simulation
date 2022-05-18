@@ -5,12 +5,12 @@ namespace battleship_simulation
 {
     public class Ship
     {
-        public string name;
-        public string symbol;
-        public int lives;
+        public string name { get; set; }
+        public string symbol { get; set; }
+        public int lives { get; set; }
         public bool isDestroyed = false;
 
-        public Ship(String name, String symbol, int lives)
+        public Ship(string name, string symbol, int lives)
         {
             this.name = name;
             this.symbol = symbol;

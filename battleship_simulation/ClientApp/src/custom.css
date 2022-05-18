@@ -1,6 +1,9 @@
-/* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
+}
+
+h1{
+    text-align:center;
 }
 
 code {
@@ -12,29 +15,24 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
+ /* class describing look of the div containing game boards*/
 .sides {
     margin: 0;
 }
-
+/* class describing look of the div containing player 1 board*/
 .left {
     float: left;
     width: 50%;
     height: auto;
 }
-
+/* class describing look of the div containing player 2 board*/
 .right {
     float: left;
     width: 50%;
     height:auto;
 }
-.center
-{
-    padding: 0;
-    margin: 0;
-}
-
-.rectangle {
+/* class describing look of the div containing water piece of the board */
+.water {
     display: inline-block;
     width: 8%;
     height: 50px;
@@ -43,8 +41,8 @@ code {
     font-size: 10px;
     text-align: center;
 }
-
-.rectangle2 {
+/* class describing look of the div containing ship piece of the board */
+.ship {
     display: inline-block;
     width: 8%;
     height: 50px;
@@ -53,8 +51,8 @@ code {
     font-size: 10px;
     text-align: center;
 }
-
-.rectangle3 {
+/* class describing look of the div containing missed shot piece of the board */
+.miss {
     display: inline-block;
     width: 8%;
     height: 50px;
@@ -63,8 +61,8 @@ code {
     font-size: 10px;
     text-align: center;
 }
-
-.rectangle4 {
+/* class describing look of the div containing registered hit piece of the board */
+.hit {
     display: inline-block;
     width: 8%;
     height: 50px;
@@ -74,7 +72,8 @@ code {
     text-align: center;
     
 }
-.t {
+/* class describing look of the div containing battle log */
+.battlelog {
     display: inline-block;
     text-align: center;
     margin-left: 35%;

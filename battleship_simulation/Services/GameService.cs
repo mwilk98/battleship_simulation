@@ -1,9 +1,10 @@
-﻿using System;
+﻿using battleship_simulation.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace battleship_simulation
 {
-    public class Game
+    public class GameService : IGameService
     {
         public bool checkShips(List<Ship> playerShips)
         {
@@ -52,7 +53,7 @@ namespace battleship_simulation
             return listNumbers;
         }
 
-        public void placeShipsOnBoard(Board board, List<Ship> playerShips, string[][] gameBoard)
+        public void placeShipsOnBoard(BoardService board, List<Ship> playerShips, string[][] gameBoard)
         {
             Random random = new Random();
             List<int> listNumbers = getRandomIntList();
@@ -78,19 +79,19 @@ namespace battleship_simulation
             {
                 col = random.Next(10);
                 rows = random.Next(10);
-            } while (gameBoard[col][rows] == "m" ||gameBoard[col][rows] == "t");
+            } while (gameBoard[col][rows] == "h" ||gameBoard[col][rows] == "t");
 
             foreach (var ship in playerShips)
             {
                 if (gameBoard[col][rows] == ship.symbol)
                 {
                     ship.hit(playerName,events);
-                    gameBoard[col][rows] = "t";
+                    gameBoard[col][rows] = "h";
                 }
             }
-            if (gameBoard[col][rows] == "t")
+            if (gameBoard[col][rows] == "h")
             {
-                gameBoard[col][rows] = "t";
+                gameBoard[col][rows] = "h";
             }
             else
             {
@@ -102,7 +103,7 @@ namespace battleship_simulation
 
         public void gameSimulation(string[][] gameBoard, List<Ship> playerOneShips, string[][] gameBoard2, List<Ship> playerTwoShips, List<string> players, List<string> events)
         {
-            int time = 0;;
+            int time = 0;
             string player1 = "Player 1";
             string player2 = "Player 2";
             players.Add(player1);
@@ -122,6 +123,11 @@ namespace battleship_simulation
                 time++;
 
             } while (checkShips(playerOneShips) && checkShips(playerTwoShips));
+
+            if (!checkShips(playerOneShips))
+                events.Insert(0, "Player 2 won!");
+
+            events.Insert(0, "Player 1 won!");
         }
     }
 }

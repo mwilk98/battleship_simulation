@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace battleship_simulation.Interfaces
 {
+    /* interface describing game repository */
     public interface IGameRepository
     {
         string[][] GetFirst();

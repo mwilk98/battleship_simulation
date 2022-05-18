@@ -12,6 +12,7 @@ namespace battleship_simulation.Services
         public string[][] playerTwoGameBoard = new string[10][];
         List<string> players = new();
         List<string> events = new();
+        bool started = false;
 
         public string[][] GetFirst()
         {
@@ -30,19 +31,22 @@ namespace battleship_simulation.Services
 
         public void Add()
         {
-            Game game = new();
-            List<Ship> playerOneShips = game.createPlayerShips();
+            if (!started)
+            {
+                started = true;
+                GameService game = new();
+                List<Ship> playerOneShips = game.createPlayerShips();
 
-            List<Ship> playerTwoShips = game.createPlayerShips();
-            
+                List<Ship> playerTwoShips = game.createPlayerShips();
 
-            Board board = new();
-            board.createBoard(playerOneGameBoard);
-            board.createBoard(playerTwoGameBoard);
-            game.placeShipsOnBoard(board, playerOneShips, playerOneGameBoard);
-            game.placeShipsOnBoard(board, playerTwoShips, playerTwoGameBoard);
-            game.gameSimulation(playerOneGameBoard, playerOneShips, playerTwoGameBoard, playerTwoShips, players, events);
 
+                BoardService board = new();
+                board.createBoard(playerOneGameBoard);
+                board.createBoard(playerTwoGameBoard);
+                game.placeShipsOnBoard(board, playerOneShips, playerOneGameBoard);
+                game.placeShipsOnBoard(board, playerTwoShips, playerTwoGameBoard);
+                game.gameSimulation(playerOneGameBoard, playerOneShips, playerTwoGameBoard, playerTwoShips, players, events);
+            }
         }
     }
 }

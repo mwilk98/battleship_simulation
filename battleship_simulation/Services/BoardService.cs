@@ -1,6 +1,8 @@
-﻿namespace battleship_simulation
+﻿using battleship_simulation.Interfaces;
+
+namespace battleship_simulation
 {
-    public class Board
+    public class BoardService : IBoardService
     {
         public void createBoard(string[][] gameBoard)
         {
@@ -19,7 +21,7 @@
         }
         public bool tryPlaceShip(Ship ship, int start, int place, int direction, string[][] gameBoard)
         {
-            bool test = true;
+            bool correct = true;
             for (int i = 0; i < gameBoard.Length; i++)
             {
                 for (int j = 0; j < gameBoard[i].Length; j++)
@@ -30,7 +32,7 @@
                         {
                             if (gameBoard[i][j] != "e")
                             {
-                                test = false;
+                                correct = false;
                             }
                         }
                     }
@@ -40,14 +42,14 @@
                         {
                             if (gameBoard[i][j] != "e")
                             {
-                                test = false;
+                                correct = false;
                             }
                         }
                     }
 
                 }
             }
-            return test;
+            return correct;
         }
 
         public void placeShip(Ship ship, int start, int place, int direction, string[][] gameBoard)
