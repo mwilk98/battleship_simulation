@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-
-namespace battleship_simulation
+﻿namespace battleship_simulation
 {
     public class Board
     {
-        public string[][] gameBoard = new string[10][];
-
         public void createBoard(string[][] gameBoard)
         {
             for (int i = 0; i < gameBoard.Length; i++)
@@ -55,10 +50,6 @@ namespace battleship_simulation
             return test;
         }
 
-        public string[][] returnBoard()
-        {
-            return gameBoard;
-        }
         public void placeShip(Ship ship, int start, int place, int direction, string[][] gameBoard)
         {
             for (int i = 0; i < gameBoard.Length; i++)
@@ -88,57 +79,6 @@ namespace battleship_simulation
 
                 }
             }
-        }
-    }
-    public class WeatherForecast
-    {
-        public string[][] Board { get; set; }
-        public string[][] Board2 { get; set; }
-    }
-
-    public interface IGameRepository
-    {
-        string[][] GetFirst();
-
-        string[][] GetSecond();
-
-        void Add();
-    }
-
-    public class GameRepository: IGameRepository
-    {
-        public string[][] gameBoard = new string[10][];
-        public string[][] gameBoard2 = new string[10][];
-
-        public GameRepository()
-        {
-
-        }
-
-        public string[][] GetFirst()
-        {
-            return gameBoard;
-        }
-
-        public string[][] GetSecond()
-        {
-            return gameBoard2;
-        }
-
-        public void Add()
-        {
-            Game game = new();
-            List<Ship> playerOneShips = game.createPlayerShips();
-
-            List<Ship> playerTwoShips = game.createPlayerShips();
-
-            Board board = new();
-            board.createBoard(gameBoard);
-            board.createBoard(gameBoard2);
-            game.placeShipsOnBoard(board, playerOneShips,gameBoard);
-            game.placeShipsOnBoard(board, playerTwoShips, gameBoard2);
-            game.gameSimulation(gameBoard,playerOneShips, gameBoard2, playerTwoShips);
-
         }
     }
 }

@@ -74,3 +74,10 @@ code {
     text-align: center;
     
 }
+.t {
+    display: inline-block;
+    text-align: center;
+    margin-left: 35%;
+    height: 400px;
+    overflow: scroll;
+}
