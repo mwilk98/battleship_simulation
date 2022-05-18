@@ -9,6 +9,12 @@ export class FetchData extends Component {
   }
 
     componentDidMount() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+        };
+        fetch('weatherforecast', requestOptions);
         this.interval = setInterval(() => {
             this.populateWeatherData();
             console.log(this.state.forecasts);
@@ -29,16 +35,16 @@ export class FetchData extends Component {
                           <div>
                               {items.map((subItems, sIndex) => {
                                   if (subItems === 'e') {
-                                      return <div className="rectangle"> </div>;
+                                      return <div className="rectangle"> "" </div>;
                                   }
-                                  if (subItems === 'f') {
+                                  if (subItems === 'c' || subItems === 'b' || subItems === 'd' || subItems === 's' || subItems === 'p') {
                                       return <div className="rectangle2"> {subItems} </div>;
                                   }
-                                  if (subItems === 'g') {
-                                      return <div className="rectangle3"> {subItems} </div>;
+                                  if (subItems === 'm') {
+                                      return <div className="rectangle3"> "" </div>;
                                   }
-                                  if (subItems === 'h') {
-                                      return <div className="rectangle4"> {subItems} </div>;
+                                  if (subItems === 't') {
+                                      return <div className="rectangle4"> "" </div>;
                                   }
                               })}
                           </div>
@@ -51,16 +57,16 @@ export class FetchData extends Component {
                           <div>
                               {items.map((subItems, sIndex) => {
                                   if (subItems === 'e') {
-                                      return <div className="rectangle2">  </div>;
+                                      return <div className="rectangle"> "" </div>;
                                   }
-                                  if (subItems === 'f') {
+                                  if (subItems === 'c' || subItems === 'b' || subItems === 'd' || subItems === 's' || subItems === 'p') {
                                       return <div className="rectangle2"> {subItems} </div>;
                                   }
-                                  if (subItems === 'g') {
-                                      return <div className="rectangle3"> {subItems} </div>;
+                                  if (subItems === 'm') {
+                                      return <div className="rectangle3"> "" </div>;
                                   }
-                                  if (subItems === 'h') {
-                                      return <div className="rectangle4"> {subItems} </div>;
+                                  if (subItems === 't') {
+                                      return <div className="rectangle4"> "" </div>;
                                   }
                               })}
                           </div>
