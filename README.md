@@ -1,4 +1,4 @@
-Design assumptions:
+Design assumptions:/n
 Simulation of gameplay of 2 players.
 Needed:
 2 boards
