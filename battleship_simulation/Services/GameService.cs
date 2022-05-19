@@ -130,8 +130,6 @@ namespace battleship_simulation
                 events.Insert(0, "Player 2 won!");
             if (!checkShips(playerTwoShips))
                 events.Insert(0, "Player 1 won!");
-            else
-                events.Insert(0, "Draw!");
         }
     }
 }
