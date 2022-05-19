@@ -33,6 +33,6 @@ Try to place ships on board based on game rules(no interference of one pool betw
 If rules are not broken, place the ship on the game board, changing fields to ship symbols.\
 After all ships are placed, start simulation.\
 In simulation, shot at a random place on the game board. Next steps are delayed by 1s. If the hit field is empty, change its value to missed. If a ship is hit, change the field to hit and register it, reducing the ship's hp. After all lives are lost, the ship is destroyed. Message of every shot result is stored in an events table. After every shot check the list of destroyed ships, if it contains all ones player ships, signal true. The player with the remaining ships wins.\
-All boards and events data is stored in the game repository. \
+All boards and events data is stored in the game repository. 
 
-Frontend side calls the method starting simulation. Next it calls for data every second. It stores it in arrays and maps them to show rectangles of the board in the right color depending on received data. \
+Frontend side calls the method starting simulation. Next it calls for data every second. It stores it in arrays and maps them to show rectangles of the board in the right color depending on received data. 
