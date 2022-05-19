@@ -2,8 +2,10 @@
 
 namespace battleship_simulation
 {
+    /* service implementing board interface, processing data of the board*/
     public class BoardService : IBoardService
     {
+        /* method filling board with empty squares*/
         public void createBoard(string[][] gameBoard)
         {
             for (int i = 0; i < gameBoard.Length; i++)
@@ -19,6 +21,7 @@ namespace battleship_simulation
                 }
             }
         }
+        /* methood checking if the ship can be placed in position */
         public bool tryPlaceShip(Ship ship, int start, int place, int direction, string[][] gameBoard)
         {
             bool correct = true;
@@ -52,6 +55,7 @@ namespace battleship_simulation
             return correct;
         }
 
+        /* method placing ship on the game board */
         public void placeShip(Ship ship, int start, int place, int direction, string[][] gameBoard)
         {
             for (int i = 0; i < gameBoard.Length; i++)

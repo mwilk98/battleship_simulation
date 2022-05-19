@@ -9,6 +9,7 @@ using battleship_simulation.Services;
 
 namespace battleship_simulation.Controllers
 {
+    /* controller providing communication with frontend of simulation */
     [ApiController]
     [Route("[controller]")]
     public class BattleshipGameSimController : ControllerBase

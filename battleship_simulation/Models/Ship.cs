@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 
 namespace battleship_simulation
-{
+{ 
+    /* class describing data of the ship object and methotds setting and checking its state */
     public class Ship
     {
         public string name { get; set; }

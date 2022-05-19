@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace battleship_simulation
 {
+    /* class implementing game interface, processing game data */
     public class GameService : IGameService
     {
+        /* method checking ship list, if there ate ships alive */
         public bool checkShips(List<Ship> playerShips)
         {
             List<bool> destroyedShips = new();
@@ -23,6 +25,7 @@ namespace battleship_simulation
             return true;
         }
 
+        /* method creating list of the ships */
         public List<Ship> createPlayerShips()
         {
             List<Ship> playerShips = new List<Ship> {
@@ -36,6 +39,7 @@ namespace battleship_simulation
             return playerShips;
         }
 
+        /* method returing list of random numbers */
         public List<int> getRandomIntList()
         {
             Random random = new Random();
@@ -53,6 +57,7 @@ namespace battleship_simulation
             return listNumbers;
         }
 
+        /* method placing ships on the board*/
         public void placeShipsOnBoard(BoardService board, List<Ship> playerShips, string[][] gameBoard)
         {
             Random random = new Random();
@@ -70,6 +75,7 @@ namespace battleship_simulation
             }
         }
 
+        /* method processing shot by player in simulation */
         public void playerShot(List<Ship> playerShips, string[][] gameBoard, string playerName, List<string> events)
         {
             Random random = new Random();
@@ -79,7 +85,7 @@ namespace battleship_simulation
             {
                 col = random.Next(10);
                 rows = random.Next(10);
-            } while (gameBoard[col][rows] == "h" ||gameBoard[col][rows] == "t");
+            } while (gameBoard[col][rows] == "m" ||gameBoard[col][rows] == "h");
 
             foreach (var ship in playerShips)
             {
@@ -101,9 +107,9 @@ namespace battleship_simulation
             }
         }
 
+        /* method running the simulation */
         public void gameSimulation(string[][] gameBoard, List<Ship> playerOneShips, string[][] gameBoard2, List<Ship> playerTwoShips, List<string> players, List<string> events)
         {
-            int time = 0;
             string player1 = "Player 1";
             string player2 = "Player 2";
             players.Add(player1);
@@ -113,21 +119,19 @@ namespace battleship_simulation
             {
 
                 playerShot(playerOneShips, gameBoard, players[0], events);
-
                 System.Threading.Thread.Sleep(1000);
-                time++;
 
                 playerShot(playerTwoShips, gameBoard2, players[1], events);
-
                 System.Threading.Thread.Sleep(1000);
-                time++;
 
             } while (checkShips(playerOneShips) && checkShips(playerTwoShips));
 
             if (!checkShips(playerOneShips))
                 events.Insert(0, "Player 2 won!");
-
-            events.Insert(0, "Player 1 won!");
+            if (!checkShips(playerTwoShips))
+                events.Insert(0, "Player 1 won!");
+            else
+                events.Insert(0, "Draw!");
         }
     }
 }

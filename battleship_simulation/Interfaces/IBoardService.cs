@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace battleship_simulation.Interfaces
 {
+    /* interface describing board service */
     public interface IBoardService
     {
         void createBoard(string[][] gameBoard);

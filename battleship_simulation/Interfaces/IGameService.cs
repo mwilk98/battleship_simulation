@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace battleship_simulation.Interfaces
 {
+    /* interface describing game service */
     interface IGameService
     {
         bool checkShips(List<Ship> playerShips);
