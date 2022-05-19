@@ -85,13 +85,13 @@ namespace battleship_simulation
             {
                 col = random.Next(10);
                 rows = random.Next(10);
-            } while (gameBoard[col][rows] == "m" ||gameBoard[col][rows] == "h");
+            } while (gameBoard[col][rows] == "m" || gameBoard[col][rows] == "h");
 
             foreach (var ship in playerShips)
             {
                 if (gameBoard[col][rows] == ship.symbol)
                 {
-                    ship.hit(playerName,events);
+                    ship.hit(playerName, events);
                     gameBoard[col][rows] = "h";
                 }
             }

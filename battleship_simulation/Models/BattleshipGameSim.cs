@@ -1,5 +1,3 @@
-using battleship_simulation.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace battleship_simulation

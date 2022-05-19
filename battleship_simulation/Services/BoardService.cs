@@ -66,20 +66,14 @@ namespace battleship_simulation
                     {
                         if (i >= start && i < start + ship.lives && j == place)
                         {
-                            if (gameBoard[i][j] == "e")
-                            {
-                                gameBoard[i][j] = ship.symbol;
-                            }
+                            gameBoard[i][j] = ship.symbol;
                         }
                     }
                     if (direction == 1)
                     {
                         if (j >= start && j < start + ship.lives && i == place)
                         {
-                            if (gameBoard[i][j] == "e")
-                            {
-                                gameBoard[i][j] = ship.symbol;
-                            }
+                            gameBoard[i][j] = ship.symbol;
                         }
                     }
 
