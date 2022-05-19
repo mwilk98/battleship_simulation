@@ -15,7 +15,7 @@ Frontend:\
 send start request\
 receive data in intervals.\
 process data\
-show data\
+show data
 
 Create game simulation:\
 Create a game service that processes simulation.\
